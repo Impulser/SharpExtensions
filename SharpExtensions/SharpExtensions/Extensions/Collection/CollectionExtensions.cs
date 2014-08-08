@@ -36,6 +36,14 @@ namespace SharpExtensions.Extensions.Collection
             }
         }
 
+        public static void ForEachNode<TElement>(this LinkedList<TElement> collection, Action<LinkedListNode<TElement>> action)
+        {
+            for(var node = collection.First; node.Next != null; node = node.Next)
+            {
+                action(node);
+            }
+        }
+
         /// <summary>
         ///     Performs the specified <paramref name="action" /> on each element of the
         ///     <see cref="T:System.Collections.Generic.IList`1" />. Additionally passing the element's index in the

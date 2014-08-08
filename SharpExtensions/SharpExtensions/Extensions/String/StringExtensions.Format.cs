@@ -20,7 +20,7 @@ namespace SharpExtensions.Extensions.String
     /// <summary>
     ///     Provides Extensions to the string type.
     /// </summary>
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
         /// <summary>
         ///     Replaces the format item in a specified string with the string representation of a corresponding object in a

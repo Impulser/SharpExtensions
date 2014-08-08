@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SharpExtensions.Utilities
 {
@@ -44,10 +45,11 @@ namespace SharpExtensions.Utilities
         ///     by starting with the default value for the <typeparamref name="TElement" /> type and applying the
         ///     <paramref name="step" /> function to the previous result.
         /// </summary>
-        /// <typeparam name="TElement">The type of the t element.</typeparam>
+        /// <typeparam name="TElement">The type of the eleements to genenrate, must be a struct type so initial value is not null.</typeparam>
         /// <param name="step">The step function.</param>
         /// <returns>A generated enumerable sequence.</returns>
         public static IEnumerable<TElement> Generate<TElement>(Func<TElement, TElement> step)
+            where TElement : struct
         {
             return Generate(default(TElement), step);
         }

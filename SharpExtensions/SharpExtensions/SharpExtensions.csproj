@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,9 +42,16 @@
   <ItemGroup>
     <Compile Include="Annotations\CodeAnnotations.cs" />
     <Compile Include="Extensions\Collection\CollectionExtensions.cs" />
-    <Compile Include="Extensions\String\StringExtensions.cs" />
+    <Compile Include="Extensions\Object\ObjectExtensions.cs" />
+    <Compile Include="Extensions\String\StringExtensions.Format.cs" />
+    <Compile Include="Extensions\String\StringExtensions.Parse.cs" />
+    <Compile Include="IO\Console.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\EnumerableUtilities.cs" />
+    <Compile Include="Windows\Windows.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IO\Console.Drawing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
