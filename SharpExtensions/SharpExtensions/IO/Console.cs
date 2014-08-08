@@ -117,6 +117,16 @@ namespace SharpExtensions.IO
             CustomWrite(format, args);
         }
 
+        private static void SystemWrite(string text)
+        {
+            SystemConsole.Write(text);
+        }
+
+        private static void SystemWriteLine(string text)
+        {
+            SystemConsole.WriteLine(text);
+        }
+
         public static void Write<TValue>(TValue value)
         {
             CustomWrite("{0}", value);

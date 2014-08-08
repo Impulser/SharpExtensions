@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SharpExtensions.Extensions.Collection
 {
@@ -33,14 +34,6 @@ namespace SharpExtensions.Extensions.Collection
             foreach (var element in collection)
             {
                 action(element);
-            }
-        }
-
-        public static void ForEachNode<TElement>(this LinkedList<TElement> collection, Action<LinkedListNode<TElement>> action)
-        {
-            for(var node = collection.First; node.Next != null; node = node.Next)
-            {
-                action(node);
             }
         }
 

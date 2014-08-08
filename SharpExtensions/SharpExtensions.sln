@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions", "SharpExtensions\SharpExtensions.csproj", "{864B0E9F-920D-41F1-9329-E40DA171E0F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions.Tests", "SharpExtensions.Tests\SharpExtensions.Tests.csproj", "{7D06EF2C-AD87-4E8D-AA61-E14D8D6D6F64}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "SharpExtensions.SourceCode", "SharpExtensions..SourceCode\SharpExtensions.SourceCode.njsproj", "{257C9CA4-9BA9-4ED5-B528-6ABF53543136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7D06EF2C-AD87-4E8D-AA61-E14D8D6D6F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D06EF2C-AD87-4E8D-AA61-E14D8D6D6F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D06EF2C-AD87-4E8D-AA61-E14D8D6D6F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257C9CA4-9BA9-4ED5-B528-6ABF53543136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257C9CA4-9BA9-4ED5-B528-6ABF53543136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257C9CA4-9BA9-4ED5-B528-6ABF53543136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257C9CA4-9BA9-4ED5-B528-6ABF53543136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

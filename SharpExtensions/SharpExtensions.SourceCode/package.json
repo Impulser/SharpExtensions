@@ -1,0 +1,13 @@
+{
+  "name": "SharpExtensions.SourceCode",
+  "version": "0.0.0",
+  "description": "SharpExtensions.SourceCode",
+  "main": "main.js",
+  "author": {
+    "name": "Alex",
+    "email": ""
+  },
+  "dependencies": {
+    "tsd": "^0.5.7"
+  }
+}

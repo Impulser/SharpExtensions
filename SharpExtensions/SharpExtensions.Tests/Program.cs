@@ -30,24 +30,8 @@ namespace SharpExtensions.Tests
             var dir = SnakeDirection.Up;
             Console.StartRenderingLoop(() =>
             {
-                var r = new Rectangle(10, 10, 2, 2);
                 while (true)
                 {
-                    switch(dir)
-                    {
-                        case SnakeDirection.Up:
-                            r.Y--;
-                            break;
-                        case SnakeDirection.Right:
-                            r.X++;
-                            break;
-                        case SnakeDirection.Down:
-                            r.Y++;
-                            break;
-                        case SnakeDirection.Left:
-                            r.X--;
-                            break;
-                    }
                     var consoleRectangle = Console.ConsoleRectangle;
                     var consoleX = consoleRectangle.X;
                     var consoleY = consoleRectangle.Y - consoleRectangle.Height / 2;
@@ -55,8 +39,11 @@ namespace SharpExtensions.Tests
                     var dY = Math.Abs(Cursor.Position.Y - consoleY);
                     var xIndex = Math.Max(dX / 8, 0);
                     var yIndex = Math.Max((dY / 12) - 20, 0);
-                    Console.FillRectangle(r, ConsoleColor.White);
-                    Console.DrawText(xIndex, yIndex, "^WMouse Position - X: {0}, Y: {1}", xIndex, yIndex);
+                    var mousePos = new Console.RenderedText(xIndex, yIndex, "^WMouse Position - X: {0}, Y: {1}", xIndex, yIndex);
+                    Console.SetCursorPosition(mousePos.);
+                    //Console.FillRectangle(r, ConsoleColor.White);
+                    Console.DrawText(0, 0, "^WMouse Position - X: {0}, Y: {1}", xIndex, yIndex);
+                    Console.DrawText(xIndex, yIndex, "^y*");
                     Thread.Sleep(100);
                     Console.ClearRendered();
                 }

@@ -4,8 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using SharpExtensions.Annotations;
+using SharpExtensions.Extensions.Collection;
 using SharpExtensions.Extensions.String;
 
 namespace SharpExtensions.IO
@@ -14,6 +16,11 @@ namespace SharpExtensions.IO
     {
         private static List<RenderedBlock> _renderedBlocks = new List<RenderedBlock>();
         private static List<RenderedText> _renderedTexts = new List<RenderedText>(); 
+
+        public interface IBounds
+        {
+             int X { get; set; }
+        }
 
         public struct RenderedText : IEquatable<RenderedText>
         {
@@ -26,6 +33,7 @@ namespace SharpExtensions.IO
                 FormatArguments = arguments;
                 Render = Format.Build(arguments);
                 BoundingRectangle = new Rectangle(x, y, Render.Length, 1);
+                var x = new TextBox().Bounds
             }
 
             public Rectangle BoundingRectangle { get; private set;}
@@ -36,6 +44,11 @@ namespace SharpExtensions.IO
             public bool Equals(RenderedText other)
             {
                 return other.BoundingRectangle.Location == BoundingRectangle.Location;
+            }
+
+            public void ClearScreen()
+            {
+                MoveBufferArea(BoundingRectangle.X, BoundingRectangle.Y, Render.Length, 1, -BoundingRectangle.Width, -BoundingRectangle.Height, ' ', ForegroundColor, BackgroundColor);
             }
         }
 
@@ -56,6 +69,18 @@ namespace SharpExtensions.IO
 
             public Rectangle BoundingRectangle { get; private set; }
             public ConsoleColor FillColour { get; private set; }
+
+            public void ClearScreen()
+            {
+                SetCursorPosition(BoundingRectangle.X, BoundingRectangle.Y);
+                var clearText = new StringBuilder();
+                var cleanLine = new string(' ', BoundingRectangle.Width);
+                for (var i = 0; i < BoundingRectangle.Height; i++)
+                {
+                    clearText.AppendLine(cleanLine);
+                }
+                SystemWrite(clearText.ToString());
+            }
 
             public bool Equals(RenderedBlock other)
             {
@@ -100,14 +125,17 @@ namespace SharpExtensions.IO
 		{
 		    SetCursorPosition(x, y);
             var renderBlock = new RenderedText(x, y, format, arguments);
+            var existingBlock = _renderedTexts.Where(text => text.BoundingRectangle.IntersectsWith(renderBlock.BoundingRectangle));
+            _renderedTexts.Add(renderBlock);
+            _renderedTexts.RemoveAll(existingBlock.Contains);
+            existingBlock.AsCollection().ForEach(text => text.ClearScreen());
             CustomWrite(renderBlock.Render);
             return format.Length;
 		}
 
         public static void ClearRendered()
         {
-            Clear();
-
+            _renderedTexts.ForEach(renderedText => renderedText.ClearScreen());
         }
 
         public static Task StartRenderingLoop(Action renderLoop)
